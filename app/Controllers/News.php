@@ -43,4 +43,33 @@ class News extends Controller
         echo view('news/form');
         echo view('templates/footer');
     }
+
+    public function store()
+    {
+        helper('form');
+
+        $model = new NewsModel();
+
+        $rules = [
+            'title' => 'required|min_length[3]|max_length[255]',
+            'body' => 'required'
+        ];
+
+        if ($this->validate($rules)) {
+            $model->save([
+                'id' => $this->request->getVar('id'),
+                'title' => $this->request->getVar('title'),
+                'slug' => url_title($this->request->getVar('title')),
+                'body' => $this->request->getVar('body')
+            ]);
+
+            echo view('templates/header');
+            echo view('news/success');
+            echo view('templates/footer');
+        } else {
+            echo view('templates/header');
+            echo view('news/form');
+            echo view('templates/footer');
+        }
+    }
 }

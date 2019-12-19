@@ -9,6 +9,8 @@ class NewsModel extends Model
     protected $table = 'news';
     protected $primaryKey = 'id';
 
+    protected $allowedFields = ['title', 'slug', 'body'];
+
     public function getNews($id = null)
     {
         if ($id === null) {

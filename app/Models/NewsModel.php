@@ -11,6 +11,13 @@ class NewsModel extends Model
 
     protected $allowedFields = ['title', 'slug', 'body'];
 
+    protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
+
+    protected $createdField = 'created_at';
+    protected $deletedtField = 'deleted_at';
+    protected $upadatedField = 'update_at';
+
     public function getNews($id = null)
     {
         if ($id === null) {

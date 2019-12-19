@@ -24,6 +24,7 @@ class NewsModel extends Model
             return $this->findAll();
         }
 
+
         return $this->asArray()->where(['id' => $id])->first();
     }
 }

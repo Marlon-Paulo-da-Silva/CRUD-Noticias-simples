@@ -72,4 +72,23 @@ class News extends Controller
             echo view('templates/footer');
         }
     }
+    public function edit($id = null)
+    {
+        $model = new NewsModel();
+
+        $data['news'] = $model->getNews($id);
+        if (empty($data['news'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Nao pude encontrar essa noticia: ' . $id);
+        }
+        $data = [
+            'title' => $data['news']['title'],
+            'slug' => url_title($data['news']['body']),
+            'body' => $data['news']['title'],
+            'id' => $data['news']['id']
+        ];
+
+        echo view('templates/header');
+        echo view('news/form', $data);
+        echo view('templates/footer');
+    }
 }

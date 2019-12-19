@@ -91,4 +91,14 @@ class News extends Controller
         echo view('news/form', $data);
         echo view('templates/footer');
     }
+
+    public function delete($id = null)
+    {
+        $model = new NewsModel();
+        $model->delete($id);
+
+        echo view('templates/header');
+        echo view('news/delete_success');
+        echo view('templates/footer');
+    }
 }
